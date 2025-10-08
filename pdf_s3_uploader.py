@@ -15,8 +15,8 @@ def upload_pdf_to_s3(pdf_url):
     # S3クライアント
     s3 = boto3.client(
         's3',
-            aws_access_key_id=AWS_ACCESS_KEY_ID
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
             region_name='ap-northeast-1'
         )
     s3_key = f"{upload_dir}/{os.path.basename(pdf_url)}"
