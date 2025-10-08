@@ -6,10 +6,13 @@ import boto3
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-AWS_ACCESS_KEY_ID = 'DUMMY_KEY'
-AWS_SECRET_ACCESS_KEY = 'DUMMY_SECRET'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_REGION = os.environ.get("AWS_DEFAULT_REGION", "ap-northeast-1")
+
 s3_bucket = "BUCKET_NAME"
 upload_dir = "pdfs"
+keyword = "対策案"
 
 def upload_pdf_to_s3(pdf_url):
     # S3クライアント
@@ -89,7 +92,6 @@ def download_all_pdfs(keyword):
     print("Complete.")
     
 def main():
-    keyword = "対策案"
     download_all_pdfs(keyword)
 
 if __name__ == "__main__":
